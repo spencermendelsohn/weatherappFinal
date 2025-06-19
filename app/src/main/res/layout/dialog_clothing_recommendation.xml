@@ -18,7 +18,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="16dp"
-            android:text="City Name" />
+            android:text="@string/city_name" />
 
         <TextView
             android:id="@+id/weatherInfoText"
@@ -27,12 +27,12 @@
             android:textSize="16sp"
             android:gravity="center"
             android:layout_marginBottom="24dp"
-            android:text="Weather Info" />
+            android:text="@string/weather_info" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="What to Wear"
+            android:text="@string/what_to_wear"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
@@ -43,12 +43,12 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"
-            android:text="Description" />
+            android:text="@string/description" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recommendations:"
+            android:text="@string/recommendations"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
@@ -63,7 +63,7 @@
             android:id="@+id/closeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Close"
+            android:text="@string/close"
             android:layout_gravity="center"
             android:layout_marginTop="24dp" />
 

@@ -11,7 +11,7 @@
         android:id="@+id/cityInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter city name"
+        android:hint="@string/enter_city_name"
         app:layout_constraintEnd_toStartOf="@+id/searchButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Search"
+        android:text="@string/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cityInputLayout"
         app:layout_constraintTop_toTopOf="parent" />
@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Save City"
+                android:text="@string/save_city"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
