@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">CS4550Weather</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="average_today">Average Today</string>
+    <string name="rain_today">Rain Today?</string>
+    <string name="uv_index">UV Index</string>
+    <string name="average_tomorrow">Average Tomorrow</string>
+    <string name="hourly">Hourly</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="what_to_wear">What to Wear</string>
+    <string name="back">Back</string>
+    <string name="or">OR</string>
 </resources>
