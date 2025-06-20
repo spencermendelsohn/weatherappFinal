@@ -61,7 +61,8 @@ dependencies {
     
     // Google Play Services Location
     implementation("com.google.android.gms:play-services-location:21.0.1")
-    
+    implementation(libs.play.services.location)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

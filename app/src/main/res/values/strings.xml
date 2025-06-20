@@ -17,4 +17,12 @@
     <string name="description">Description</string>
     <string name="recommendations">Recommendations:</string>
     <string name="close">Close</string>
+    <string name="average_today">Average Today</string>
+    <string name="average_tomorrow">Average Tomorrow</string>
+    <string name="hourly">Hourly</string>
+    <string name="rain_today">Rain Today</string>
+    <string name="uv_index">UV Index</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="or">or</string>
+    <string name="back">Back</string>
 </resources>
