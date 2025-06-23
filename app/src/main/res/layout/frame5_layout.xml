@@ -123,18 +123,32 @@
             android:textAlignment="center"
             android:textColor="#557270"
             android:background="@drawable/rounded_box"
-            app:layout_constraintBottom_toTopOf="@+id/back_button"
+            app:layout_constraintBottom_toTopOf="@+id/more_info_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hourly_title">
         </TextView>
+
+        <!-- More Info Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/more_info_button"
+            android:layout_width="180dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#546980"
+            android:text="@string/more_info"
+            android:textColor="@color/white"
+            app:cornerRadius="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hourly_temps" />
 
         <!-- Back Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/back_button"
             android:layout_width="180dp"
             android:layout_height="42dp"
-            android:layout_marginTop="80dp"
             android:backgroundTint="#546980"
             android:text="@string/back"
             android:textColor="@color/white"
@@ -142,7 +156,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hourly_temps" />
+            app:layout_constraintTop_toBottomOf="@+id/more_info_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

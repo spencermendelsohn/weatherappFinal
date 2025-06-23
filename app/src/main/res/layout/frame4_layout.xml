@@ -26,21 +26,21 @@
         android:textSize="35sp"
         android:textColor="#557270"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/average_today_title"
+        app:layout_constraintBottom_toTopOf="@+id/weather_condition_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed">
     </TextView>
 
-    <!-- Average Today Title -->
+    <!-- Weather Condition Title -->
     <TextView
-        android:id="@+id/average_today_title"
+        android:id="@+id/weather_condition_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:textSize="35sp"
-        android:text="@string/average_today"
+        android:text="@string/weather_condition"
         android:textAlignment="center"
         android:textColor="#557270"
         app:layout_constraintBottom_toTopOf="@+id/average_today_temp"
@@ -62,7 +62,7 @@
         app:layout_constraintBottom_toTopOf="@+id/rain_today_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/average_today_title">
+        app:layout_constraintTop_toBottomOf="@+id/weather_condition_title">
     </TextView>
 
     <!-- Rain Today Title -->
