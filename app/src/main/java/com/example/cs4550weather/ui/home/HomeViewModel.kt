@@ -8,12 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.cs4550weather.data.model.SavedCity
 import com.example.cs4550weather.data.model.WeatherUiState
 import com.example.cs4550weather.data.repository.SavedCitiesRepository
-import com.example.cs4550weather.data.repository.WeatherRepository
+import com.example.cs4550weather.data.repository.WeatherAppRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
-    private val weatherRepository = WeatherRepository()
+    private val weatherAppRepository = WeatherAppRepository()
     private var savedCitiesRepository: SavedCitiesRepository? = null
     
     private val _weatherState = MutableLiveData<WeatherUiState>(WeatherUiState())
@@ -33,7 +33,7 @@ class HomeViewModel : ViewModel() {
         
         viewModelScope.launch {
             try {
-                val result = weatherRepository.getWeatherByCity(cityName)
+                val result = weatherAppRepository.getWeatherByCity(cityName)
                 result.fold(
                     onSuccess = { weatherResponse ->
                         val uiState = WeatherUiState(
