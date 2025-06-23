@@ -1,4 +1,4 @@
-package com.example.cs4550weather.ui.dashboard.weatherdetails
+package com.example.cs4550weather.ui.dashboard.weatherdetails.view
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button

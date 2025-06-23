@@ -1,4 +1,4 @@
-package com.example.cs4550weather.ui.dashboard.weatherdetails
+package com.example.cs4550weather.ui.dashboard.weatherdetails.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
@@ -60,11 +60,11 @@ fun OutfitRecommendationsScreen(
 
             Spacer(Modifier.height(20.dp))
 
-            OutfitRow(option1Text, option1Image)
+            OutfitRow(option1Text, option1Image, "Option 1 Image")
 
             Spacer(Modifier.height(40.dp))
 
-            OutfitRow(option2Text, option2Image)
+            OutfitRow(option2Text, option2Image, "Option 2 Image")
 
             Spacer(Modifier.height(60.dp))
 
@@ -74,7 +74,7 @@ fun OutfitRecommendationsScreen(
 }
 
 @Composable
-fun OutfitRow(text: String, image: Int) {
+fun OutfitRow(text: String, image: Int, imageDescription : String) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -88,7 +88,7 @@ fun OutfitRow(text: String, image: Int) {
 
         Image(
             painter = painterResource(id = image),
-            contentDescription = null,
+            contentDescription = imageDescription,
             contentScale = ContentScale.Fit
         )
     }

@@ -1,4 +1,4 @@
-package com.example.cs4550weather.ui.dashboard.weatherdetails
+package com.example.cs4550weather.ui.dashboard.weatherdetails.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

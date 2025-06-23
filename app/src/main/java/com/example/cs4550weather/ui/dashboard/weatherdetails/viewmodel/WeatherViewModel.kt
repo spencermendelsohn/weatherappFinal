@@ -1,6 +1,7 @@
-package com.example.cs4550weather.ui.dashboard.weatherdetails
+package com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.cs4550weather.ui.dashboard.weatherdetails.data.WeatherRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
