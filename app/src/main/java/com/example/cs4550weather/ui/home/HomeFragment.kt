@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
     private fun updateUI(weatherState: com.example.cs4550weather.data.model.WeatherUiState) {
         // Show/hide loading state
         binding.searchButton.isEnabled = !weatherState.isLoading
-        
+
         if (weatherState.isLoading) {
             binding.searchButton.text = "Searching..."
         } else {
@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         if (weatherState.error != null) {
             binding.errorText.text = weatherState.error
             binding.errorText.visibility = View.VISIBLE
-            
+
             // Hide weather information and save button
             binding.cityNameText.visibility = View.GONE
             binding.temperatureText.visibility = View.GONE
