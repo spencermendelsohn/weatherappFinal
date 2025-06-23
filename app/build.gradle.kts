@@ -38,6 +38,11 @@ android {
         viewBinding = true
         compose = true
     }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -62,7 +67,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     
     // Google Play Services Location
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+    //implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation(libs.play.services.location)
     implementation(libs.androidx.room.common.jvm)
     implementation(libs.androidx.runtime.android)
@@ -72,8 +77,17 @@ dependencies {
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.ui.tooling.preview.android)
     implementation(libs.androidx.ui.tooling.android)
+    implementation(libs.androidx.room.runtime.android)
+    implementation(libs.androidx.ui.test.junit4.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    //androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(kotlin("test"))
+    implementation(libs.androidx.compose.bom)
+    //androidTestImplementation(libs.androidx.espresso.core.v361)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+
 }
