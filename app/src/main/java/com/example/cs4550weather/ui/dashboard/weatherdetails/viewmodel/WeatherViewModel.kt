@@ -5,7 +5,15 @@ import com.example.cs4550weather.ui.dashboard.weatherdetails.data.WeatherReposit
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class WeatherViewModel (private val repository: WeatherRepository) : ViewModel() {
+class WeatherViewModel : ViewModel() {
+//    private val repository = WeatherRepository(
+//        api = TODO(),
+//        weatherDao = TODO()
+//    )
+
+    private val _cityName = MutableStateFlow("")
+    val cityName = _cityName.asStateFlow()
+
     private val _averageTempToday = MutableStateFlow("")
     val averageTempToday = _averageTempToday.asStateFlow()
 
@@ -24,6 +32,17 @@ class WeatherViewModel (private val repository: WeatherRepository) : ViewModel()
     private val _uvIndex = MutableStateFlow("")
     val uvIndex = _uvIndex.asStateFlow()
 
+    private val _option1Text = MutableStateFlow("")
+    val option1Text = _option1Text.asStateFlow()
+
+    private val _option1Image = MutableStateFlow(0)
+    val option1Image = _option1Image.asStateFlow()
+
+    private val _option2Text = MutableStateFlow("")
+    val option2Text = _option2Text.asStateFlow()
+
+    private val _option2Image = MutableStateFlow(0)
+    val option2Image = _option2Image.asStateFlow()
 
 
     private fun getWeatherCondition(code: Int): String {
