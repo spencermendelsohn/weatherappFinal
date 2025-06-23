@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import java.net.UnknownHostException
 import com.example.cs4550weather.data.model.SavedCity
 import com.example.cs4550weather.data.model.WeatherUiState
 import com.example.cs4550weather.data.repository.SavedCitiesRepository
@@ -47,16 +48,26 @@ class HomeViewModel : ViewModel() {
                         _weatherState.value = uiState
                     },
                     onFailure = { exception ->
+                        val errorMessage = when (exception) {
+                            is UnknownHostException -> "Invalid location!"
+                            else -> exception.message ?: "Unknown error occurred"
+                        }
+
                         _weatherState.value = WeatherUiState(
                             isLoading = false,
-                            error = exception.message ?: "Unknown error occurred"
+                            error = errorMessage
                         )
                     }
                 )
             } catch (e: Exception) {
+                val errorMessage = when (e) {
+                    is UnknownHostException -> "Invalid location!"
+                    else -> e.message ?: "Unknown error occurred"
+                }
+
                 _weatherState.value = WeatherUiState(
                     isLoading = false,
-                    error = e.message ?: "Unknown error occurred"
+                    error = errorMessage
                 )
             }
         }
