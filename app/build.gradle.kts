@@ -96,9 +96,7 @@ dependencies {
     //androidTestImplementation(libs.androidx.espresso.core)
     testImplementation(kotlin("test"))
     implementation(libs.androidx.compose.bom)
-    //androidTestImplementation(libs.androidx.espresso.core.v361)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.test.manifest)
-
 
 }

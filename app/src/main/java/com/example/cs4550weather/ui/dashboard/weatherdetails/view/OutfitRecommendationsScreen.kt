@@ -86,8 +86,9 @@ fun OutfitRow(text: String, image: Int, imageDescription : String) {
             color = Color(0xFF557270)
         )
 
+        val defaultImage = if (image != 0) image else R.drawable.ic_launcher_foreground
         Image(
-            painter = painterResource(id = image),
+            painter = painterResource(id = defaultImage),
             contentDescription = imageDescription,
             contentScale = ContentScale.Fit
         )
