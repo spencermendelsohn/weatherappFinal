@@ -1,23 +1,31 @@
 package com.example.cs4550weather.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.cs4550weather.data.api.WeatherApiService
-import com.example.cs4550weather.ui.dashboard.weatherdetails.data.WeatherRepository
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.CurrentWeatherScreen
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.MoreInfoWeatherScreen
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.OutfitRecommendationsScreen
 import com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel.WeatherViewModel
 
 @Composable
-fun NavGraph(
-    weatherViewModel: WeatherViewModel = WeatherViewModel()
+fun WeatherDetailNavGraph(
+    selectedCityName: String,
+    onBackToCity: () -> Unit
 ) {
     val navController = rememberNavController()
+    val weatherViewModel: WeatherViewModel = viewModel()
 
+    // Load weather data for the selected city when NavGraph starts
+    LaunchedEffect(selectedCityName) {
+        if (selectedCityName.isNotBlank()) {
+            weatherViewModel.loadWeatherForCity(selectedCityName)
+        }
+    }
     NavHost(navController = navController, startDestination = "current_weather") {
         composable("current_weather") {
             CurrentWeatherScreen(
