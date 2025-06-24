@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import android.widget.Toast
+import androidx.compose.ui.platform.testTag
 import com.example.cs4550weather.ui.home.LoginState
 import com.example.cs4550weather.ui.home.LoginViewModel
 
@@ -79,7 +80,8 @@ fun LoginScreen(
                 placeholder = { Text("Username", color = Color(0xFF888888)) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp),
+                    .height(56.dp)
+                    .testTag("usernameTextField"),
                 shape = RoundedCornerShape(8.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
@@ -102,7 +104,8 @@ fun LoginScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp),
+                    .height(56.dp)
+                    .testTag("passwordTextField"),
                 shape = RoundedCornerShape(8.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
@@ -121,7 +124,8 @@ fun LoginScreen(
                 onClick = { viewModel.login(username, password) },
                 modifier = Modifier
                     .wrapContentSize()
-                    .height(44.dp),
+                    .height(44.dp)
+                    .testTag("loginButton"),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF546980)
                 ),

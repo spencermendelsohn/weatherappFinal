@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -86,7 +87,8 @@ fun NotificationsScreen(
             },
             modifier = Modifier
                 .width(180.dp)
-                .height(42.dp),
+                .height(42.dp)
+                .testTag("get_location_button"),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF546980)
             ),
@@ -140,6 +142,7 @@ fun NotificationsScreen(
 
                     Text(
                         text = weatherState.temperature,
+                        modifier = Modifier.testTag("temperatureText"),
                         fontSize = 18.sp,
                         color = Color(0xFF557270),
                         fontWeight = FontWeight.Bold

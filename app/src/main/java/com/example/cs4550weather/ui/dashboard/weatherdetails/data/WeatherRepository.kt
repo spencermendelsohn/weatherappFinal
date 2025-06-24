@@ -7,7 +7,7 @@ import com.example.cs4550weather.data.model.HourlyUnits
 import com.example.cs4550weather.data.model.WeatherResponse
 import com.example.cs4550weather.data.repository.WeatherAppRepository
 
-class WeatherRepository(
+open class WeatherRepository(
     private val apiRepository: WeatherAppRepository,
     private val weatherDao: WeatherDao
 ) {

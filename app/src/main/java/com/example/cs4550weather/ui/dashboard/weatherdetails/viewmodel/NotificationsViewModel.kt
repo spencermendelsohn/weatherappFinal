@@ -14,7 +14,7 @@ import com.example.cs4550weather.data.service.LocationService
 import com.example.cs4550weather.ui.dashboard.weatherdetails.data.WeatherRepository
 import kotlinx.coroutines.launch
 
-class NotificationsViewModel(private val repository: WeatherRepository) : ViewModel() {
+open class NotificationsViewModel(private val repository: WeatherRepository) : ViewModel() {
 
     private var savedCitiesRepository: SavedCitiesRepository? = null
     private var locationService: LocationService? = null

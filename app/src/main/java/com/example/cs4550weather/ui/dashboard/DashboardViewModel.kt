@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class DashboardViewModel : ViewModel() {
+open class DashboardViewModel : ViewModel() {
 
     private var savedCitiesRepository: SavedCitiesRepository? = null
 
