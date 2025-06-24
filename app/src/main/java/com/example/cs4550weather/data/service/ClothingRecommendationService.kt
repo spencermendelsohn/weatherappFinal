@@ -29,10 +29,10 @@ class ClothingRecommendationService {
                     temperature = temperature,
                     recommendations = listOf(
                         "Warm jacket or coat",
+                        "Light sweater or hoodie",
                         "Light scarf and gloves",
                         "Long pants or jeans",
-                        "Closed-toe shoes",
-                        "Light sweater or hoodie"
+                        "Closed-toe shoes"
                     ),
                     description = "It's chilly! Wear warm layers and protect yourself from the cold."
                 )
@@ -80,7 +80,6 @@ class ClothingRecommendationService {
                 ClothingRecommendation(
                     temperature = temperature,
                     recommendations = listOf(
-                        "Very light, loose clothing",
                         "Shorts and tank top/t-shirt",
                         "Sandals or breathable shoes",
                         "Wide-brimmed hat",

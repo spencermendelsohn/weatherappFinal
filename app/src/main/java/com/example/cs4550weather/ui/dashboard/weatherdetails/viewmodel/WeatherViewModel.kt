@@ -144,13 +144,35 @@ class WeatherViewModel : ViewModel() {
         if (recommendations.isNotEmpty()) {
             _option1Text.value = recommendations.getOrNull(0) ?: "Light clothing"
             _option2Text.value = recommendations.getOrNull(1) ?: "Comfortable shoes"
+            getOutfitImage(recommendations.getOrNull(0) ?: "Light clothing")
         } else {
             _option1Text.value = "Light clothing"
             _option2Text.value = "Comfortable shoes"
+            _option1Image.value = R.drawable.light_shirt
+            _option2Image.value = R.drawable.sandals
         }
+    }
 
-        _option1Image.value = R.drawable.ic_launcher_foreground
-        _option2Image.value = R.drawable.ic_launcher_foreground
+    private fun getOutfitImage(recommendation: String) {
+        if (recommendation.equals("Heavy winter coat or parka")) {
+            _option1Image.value = R.drawable.winter_coat
+            _option2Image.value = R.drawable.winter_accessories
+        } else if (recommendation.equals("Warm jacket or coat")) {
+            _option1Image.value = R.drawable.warm_jacket
+            _option2Image.value = R.drawable.light_sweater
+        } else if (recommendation.equals("Light jacket or cardigan")) {
+            _option1Image.value = R.drawable.light_cardigan
+            _option2Image.value = R.drawable.long_jeans
+        } else if (recommendation.equals("Light shirt or t-shirt")) {
+            _option1Image.value = R.drawable.light_tshirt
+            _option2Image.value = R.drawable.shorts
+        } else if (recommendation.equals("Light, breathable shirt")) {
+            _option1Image.value = R.drawable.light_shirt
+            _option2Image.value = R.drawable.shorts
+        } else if (recommendation.equals("Shorts and tank top/t-shirt")) {
+            _option1Image.value = R.drawable.shorts_tshirt
+            _option2Image.value = R.drawable.sandals
+        }
     }
 
     private fun clearIndividualProperties() {
