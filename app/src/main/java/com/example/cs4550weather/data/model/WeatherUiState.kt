@@ -5,6 +5,9 @@ data class WeatherUiState(
     val temperature: String = "",
     val humidity: String = "",
     val windSpeed: String = "",
+    val weatherCondition: String = "",
+    val rainToday: String = "",
+    val uvIndex: String = "",
     val isLoading: Boolean = false,
     val error: String? = null
-) 
+)

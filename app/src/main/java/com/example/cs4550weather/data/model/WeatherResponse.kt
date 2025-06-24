@@ -1,7 +1,5 @@
 package com.example.cs4550weather.data.model
 
-import com.google.gson.annotations.SerializedName
-
 data class WeatherResponse(
     val latitude: Double,
     val longitude: Double,

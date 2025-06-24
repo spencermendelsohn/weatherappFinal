@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">CS4550Weather</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Saved Cities</string>
+    <string name="title_notifications">Current location</string>
     <string name="current_location_weather">Current Location Weather</string>
     <string name="get_my_location">Get My Location</string>
     <string name="save_this_location">Save This Location</string>

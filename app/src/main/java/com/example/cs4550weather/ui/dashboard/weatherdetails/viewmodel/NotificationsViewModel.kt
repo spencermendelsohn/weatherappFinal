@@ -1,8 +1,9 @@
-package com.example.cs4550weather.ui.notifications
+package com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cs4550weather.data.model.SavedCity
@@ -17,9 +18,9 @@ class NotificationsViewModel : ViewModel() {
     private val weatherAppRepository = WeatherAppRepository()
     private var savedCitiesRepository: SavedCitiesRepository? = null
     private var locationService: LocationService? = null
-    
-    private val _weatherState = MutableLiveData<WeatherUiState>(WeatherUiState())
-    val weatherState: LiveData<WeatherUiState> = _weatherState
+
+    private val _weatherState = MutableStateFlow(WeatherUiState())
+    val weatherState: StateFlow<WeatherUiState> = _weatherState.asStateFlow()
 
     fun initializeRepositories(context: Context) {
         savedCitiesRepository = SavedCitiesRepository(context)
@@ -27,12 +28,11 @@ class NotificationsViewModel : ViewModel() {
     }
 
     fun getCurrentLocationWeather() {
-        _weatherState.value = _weatherState.value?.copy(isLoading = true, error = null)
-        
+        _weatherState.value = _weatherState.value.copy(isLoading = true, error = null)
         viewModelScope.launch {
             try {
                 val locationResult = locationService?.getCurrentLocation()
-                
+
                 when (locationResult) {
                     is LocationService.LocationResult.Success -> {
                         val weatherResult = weatherAppRepository.getWeatherByCity(locationResult.cityName)
@@ -80,7 +80,7 @@ class NotificationsViewModel : ViewModel() {
 
     fun saveCurrentLocation() {
         val currentState = _weatherState.value
-        if (currentState?.cityName?.isNotEmpty() == true && savedCitiesRepository != null) {
+        if (currentState.cityName.isNotEmpty() == true && savedCitiesRepository != null) {
             val savedCity = SavedCity(
                 name = currentState.cityName,
                 temperature = currentState.temperature,
@@ -93,7 +93,7 @@ class NotificationsViewModel : ViewModel() {
 
     fun isCurrentLocationSaved(): Boolean {
         val currentState = _weatherState.value
-        return currentState?.cityName?.isNotEmpty() == true && 
-               savedCitiesRepository?.isCitySaved(currentState.cityName) == true
+        return currentState?.cityName?.isNotEmpty() == true &&
+                savedCitiesRepository?.isCitySaved(currentState.cityName) == true
     }
 }

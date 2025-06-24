@@ -45,7 +45,7 @@ class WeatherAppRepository {
                 // First, get coordinates for the city
                 val geocodingResponse = geocodingApiService.searchCity(cityName)
                 
-                if (geocodingResponse.results.isEmpty()) {
+                if (geocodingResponse.results.isNullOrEmpty()) {
                     return@withContext Result.failure(Exception("City not found"))
                 }
                 
