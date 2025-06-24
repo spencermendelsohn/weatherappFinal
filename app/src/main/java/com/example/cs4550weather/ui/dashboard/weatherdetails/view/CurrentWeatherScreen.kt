@@ -14,19 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-@Preview(showBackground = true)
-@Composable
-fun WeatherScreenPreview() {
-    CurrentWeatherScreen(
-        cityName = "Boston",
-        averageTempToday = "22°C",
-        averageTempTomorrow = "30°C",
-        hourlyTemps = "18° 20° 22° 24° 26°",
-        onMoreInfoClick = {},
-        onBackToCityListClick = {}
-    )
-}
-
 @Composable
 fun CurrentWeatherScreen(
     cityName: String,

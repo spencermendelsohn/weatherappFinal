@@ -16,19 +16,6 @@ import androidx.compose.ui.unit.sp
 import com.example.cs4550weather.ui.home.HomeViewModel
 import androidx.compose.runtime.collectAsState
 
-@Preview(showBackground = true)
-@Composable
-fun MoreInfoWeatherScreenPreview() {
-    MoreInfoWeatherScreen(
-        cityName = "Boston",
-        weatherCondition = "Sunny",
-        rainToday = "30%",
-        uvIndex = "5",
-        onWhatToWearClick = {},
-        onBackToCurrentWeatherClick = {}
-    )
-}
-
 @Composable
 fun MoreInfoWeatherScreen(
     cityName: String,

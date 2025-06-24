@@ -1,21 +1,22 @@
 package com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cs4550weather.data.model.WeatherResponse
 import com.example.cs4550weather.data.model.WeatherUiState
-import com.example.cs4550weather.data.repository.WeatherAppRepository
 import com.example.cs4550weather.data.service.ClothingRecommendationService
 import com.example.cs4550weather.R
+import com.example.cs4550weather.ui.dashboard.weatherdetails.data.WeatherEntity
+import com.example.cs4550weather.ui.dashboard.weatherdetails.data.WeatherRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 
-class WeatherViewModel : ViewModel() {
+class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
-    private val weatherAppRepository = WeatherAppRepository()
     private val clothingRecommendationService = ClothingRecommendationService()
 
     private val _averageTempToday = MutableStateFlow("")
@@ -46,14 +47,15 @@ class WeatherViewModel : ViewModel() {
     private val _option1Text = MutableStateFlow("")
     val option1Text: StateFlow<String> = _option1Text.asStateFlow()
 
-    private val _option1Image = MutableStateFlow(R.drawable.ic_launcher_foreground)
+    private val _option1Image = MutableStateFlow(0)
     val option1Image: StateFlow<Int> = _option1Image.asStateFlow()
 
     private val _option2Text = MutableStateFlow("")
     val option2Text: StateFlow<String> = _option2Text.asStateFlow()
 
-    private val _option2Image = MutableStateFlow(R.drawable.ic_launcher_foreground)
+    private val _option2Image = MutableStateFlow(0)
     val option2Image: StateFlow<Int> = _option2Image.asStateFlow()
+
     fun loadWeatherForCity(cityName: String) {
         if (cityName.isBlank()) {
             _weatherState.value = WeatherUiState(error = "Invalid city name")
@@ -64,7 +66,7 @@ class WeatherViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                val result = weatherAppRepository.getWeatherByCity(cityName)
+                val result = repository.getWeatherByCity(cityName)
                 result.fold(
                     onSuccess = { weatherResponse ->
                         val uiState = WeatherUiState(
@@ -84,16 +86,17 @@ class WeatherViewModel : ViewModel() {
                         generateClothingRecommendations(uiState)
                     },
                     onFailure = { exception ->
-                        val errorMessage = when (exception) {
-                            is UnknownHostException -> "Invalid location!"
-                            else -> exception.message ?: "Unknown error occurred"
+                        Log.d("WeatherViewModel", "Loaded weather data for $cityName (from API or cache)")
+                        val savedCity = repository.getSavedWeather(cityName)
+                        if (savedCity != null) {
+                            _weatherState.value = savedCity.toUiState()
+                        } else {
+                            _weatherState.value = WeatherUiState(
+                                isLoading = false,
+                                error = "Connection error. Could not load data"
+                            )
+                            clearIndividualProperties()
                         }
-
-                        _weatherState.value = WeatherUiState(
-                            isLoading = false,
-                            error = errorMessage
-                        )
-                        clearIndividualProperties()
                     }
                 )
             } catch (e: Exception) {
@@ -109,6 +112,20 @@ class WeatherViewModel : ViewModel() {
                 clearIndividualProperties()
             }
         }
+    }
+
+    private fun WeatherEntity.toUiState(): WeatherUiState {
+        return WeatherUiState(
+            cityName = this.cityName,
+            temperature = this.temperature,
+            humidity = this.humidity,
+            windSpeed = this.windSpeed,
+            weatherCondition = this.weatherCondition,
+            rainToday = this.rainToday,
+            uvIndex = this.uvIndex,
+            isLoading = false,
+            error = null
+        )
     }
 
     private fun updateIndividualProperties(uiState: WeatherUiState, weatherResponse: WeatherResponse) {
@@ -208,3 +225,4 @@ class WeatherViewModel : ViewModel() {
         }
     }
 }
+

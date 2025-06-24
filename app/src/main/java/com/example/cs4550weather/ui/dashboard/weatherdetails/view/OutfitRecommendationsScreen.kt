@@ -18,19 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cs4550weather.R
 
-@Preview(showBackground = true)
-@Composable
-fun OutfitScreenPreview() {
-    OutfitRecommendationsScreen (
-        cityName = "Boston",
-        option1Text = "Light jacket or cardigan",
-        option1Image = R.drawable.ic_launcher_foreground,
-        option2Text = "Comfortable shoes",
-        option2Image = R.drawable.ic_launcher_foreground,
-        onBackToMoreInfoClick = {}
-    )
-}
-
 @Composable
 fun OutfitRecommendationsScreen(
     cityName: String,

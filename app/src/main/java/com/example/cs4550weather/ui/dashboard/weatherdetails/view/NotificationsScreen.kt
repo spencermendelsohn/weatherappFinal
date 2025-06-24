@@ -25,7 +25,7 @@ import com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel.Notificat
 
 @Composable
 fun NotificationsScreen(
-    viewModel: NotificationsViewModel = viewModel()
+    viewModel: NotificationsViewModel
 ) {
     val context = LocalContext.current
     val weatherState by viewModel.weatherState.collectAsState()
@@ -214,10 +214,4 @@ fun NotificationsScreen(
         // Add bottom padding for better scrolling
         Spacer(modifier = Modifier.height(40.dp))
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun NotificationsScreenPreview() {
-    NotificationsScreen()
 }

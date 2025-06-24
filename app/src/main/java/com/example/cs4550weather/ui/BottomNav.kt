@@ -9,6 +9,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -18,6 +20,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.CityListScreen
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.HomeScreen
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.NotificationsScreen
+import com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel.NotificationsViewModel
+import com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel.NotificationsViewModelFactory
+import com.example.cs4550weather.ui.home.HomeViewModel
+import com.example.cs4550weather.ui.home.HomeViewModelFactory
 
 sealed class BottomNavItem(
     val route: String,
@@ -70,7 +76,11 @@ fun MainAppWithBottomNav() {
             Modifier.padding(innerPadding)
         ) {
             composable(BottomNavItem.Home.route) {
-                HomeScreen()
+                val context = LocalContext.current
+                val factory = remember { HomeViewModelFactory(context) }
+                val homeViewModel: HomeViewModel = viewModel(factory = factory)
+
+                HomeScreen(viewModel = homeViewModel)
             }
             composable(BottomNavItem.Dashboard.route) {
                 CityListScreen(
@@ -80,7 +90,11 @@ fun MainAppWithBottomNav() {
                 )
             }
             composable(BottomNavItem.Notifications.route) {
-                NotificationsScreen()
+                val context = LocalContext.current
+                val factory = remember { NotificationsViewModelFactory(context) }
+                val notificationsViewModel: NotificationsViewModel = viewModel(factory = factory)
+
+                NotificationsScreen(viewModel = notificationsViewModel)
             }
             composable("weather_details/{cityName}") { backStackEntry ->
                 val cityName = backStackEntry.arguments?.getString("cityName") ?: ""

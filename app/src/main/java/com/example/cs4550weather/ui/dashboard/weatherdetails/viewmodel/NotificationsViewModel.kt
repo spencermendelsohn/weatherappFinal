@@ -11,11 +11,11 @@ import com.example.cs4550weather.data.model.WeatherUiState
 import com.example.cs4550weather.data.repository.SavedCitiesRepository
 import com.example.cs4550weather.data.repository.WeatherAppRepository
 import com.example.cs4550weather.data.service.LocationService
+import com.example.cs4550weather.ui.dashboard.weatherdetails.data.WeatherRepository
 import kotlinx.coroutines.launch
 
-class NotificationsViewModel : ViewModel() {
+class NotificationsViewModel(private val repository: WeatherRepository) : ViewModel() {
 
-    private val weatherAppRepository = WeatherAppRepository()
     private var savedCitiesRepository: SavedCitiesRepository? = null
     private var locationService: LocationService? = null
 
@@ -35,7 +35,7 @@ class NotificationsViewModel : ViewModel() {
 
                 when (locationResult) {
                     is LocationService.LocationResult.Success -> {
-                        val weatherResult = weatherAppRepository.getWeatherByCity(locationResult.cityName)
+                        val weatherResult = repository.getWeatherByCity(locationResult.cityName)
                         weatherResult.fold(
                             onSuccess = { weatherResponse ->
                                 val uiState = WeatherUiState(

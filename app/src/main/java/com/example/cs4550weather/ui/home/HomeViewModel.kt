@@ -12,14 +12,14 @@ import com.example.cs4550weather.data.model.WeatherResponse
 import com.example.cs4550weather.data.model.WeatherUiState
 import com.example.cs4550weather.data.repository.SavedCitiesRepository
 import com.example.cs4550weather.data.repository.WeatherAppRepository
+import com.example.cs4550weather.ui.dashboard.weatherdetails.data.WeatherRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val repository: WeatherRepository) : ViewModel() {
 
-    private val weatherAppRepository = WeatherAppRepository()
     private var savedCitiesRepository: SavedCitiesRepository? = null
 
     private val _weatherState = MutableStateFlow(WeatherUiState())
@@ -42,7 +42,7 @@ class HomeViewModel : ViewModel() {
         
         viewModelScope.launch {
             try {
-                val result = weatherAppRepository.getWeatherByCity(cityName)
+                val result = repository.getWeatherByCity(cityName)
                 result.fold(
                     onSuccess = { weatherResponse ->
                         _fullWeatherResponse.value = weatherResponse

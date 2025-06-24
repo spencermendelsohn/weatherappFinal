@@ -3,6 +3,8 @@ package com.example.cs4550weather.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,6 +13,7 @@ import com.example.cs4550weather.ui.dashboard.weatherdetails.view.CurrentWeather
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.MoreInfoWeatherScreen
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.OutfitRecommendationsScreen
 import com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel.WeatherViewModel
+import com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel.WeatherViewModelFactory
 
 @Composable
 fun WeatherDetailNavGraph(
@@ -18,7 +21,10 @@ fun WeatherDetailNavGraph(
     onBackToCity: () -> Unit
 ) {
     val navController = rememberNavController()
-    val weatherViewModel: WeatherViewModel = viewModel()
+
+    val context = LocalContext.current
+    val factory = remember { WeatherViewModelFactory(context) }
+    val weatherViewModel: WeatherViewModel = viewModel(factory = factory)
 
     // Load weather data for the selected city when NavGraph starts
     LaunchedEffect(selectedCityName) {

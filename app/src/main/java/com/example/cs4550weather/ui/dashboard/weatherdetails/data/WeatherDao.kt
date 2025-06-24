@@ -8,25 +8,9 @@ import androidx.room.Query
 @Dao
 interface WeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCurrentWeather(products: List<CurrentWeatherEntity>)
+    suspend fun insertWeather(weather: WeatherEntity)
 
-    @Query("SELECT * FROM current_weather_table")
-    suspend fun getCurrentWeather(): List<CurrentWeatherEntity>
-
-    @Query("DELETE FROM current_weather_table")
-    suspend fun clearCurrentWeather()
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertHourlyWeather(products: List<HourlyWeatherEntity>)
-
-    @Query("SELECT * FROM hourly_weather_table ORDER BY time ASC")
-    suspend fun getHourlyWeather(): List<HourlyWeatherEntity>
-
-    @Query("DELETE FROM hourly_weather_table")
-    suspend fun clearHourlyWeather()
-
-    // In order to get average temperature for next day
-    @Query("SELECT * FROM hourly_weather_table WHERE time LIKE :date || '%' ORDER BY time ASC")
-    suspend fun getHourlyForecastForDate(date: String): List<HourlyWeatherEntity>
+    @Query("SELECT * FROM weather_table WHERE cityName = :city")
+    suspend fun getCity(city: String): WeatherEntity?
 
 }
