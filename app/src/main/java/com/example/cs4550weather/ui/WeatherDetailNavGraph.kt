@@ -34,7 +34,7 @@ fun WeatherDetailNavGraph(
                 averageTempTomorrow = weatherViewModel.averageTempTomorrow.collectAsState().value,
                 hourlyTemps = weatherViewModel.hourlyTemps.collectAsState().value,
                 onMoreInfoClick = { navController.navigate("more_info") },
-                onBackToCityListClick = { /* optional */ }
+                onBackToCityListClick = onBackToCity
             )
         }
         composable("more_info") {
