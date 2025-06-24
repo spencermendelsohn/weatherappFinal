@@ -5,8 +5,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.cs4550weather.data.api.WeatherApiService
-import com.example.cs4550weather.ui.dashboard.weatherdetails.data.WeatherRepository
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.CurrentWeatherScreen
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.MoreInfoWeatherScreen
 import com.example.cs4550weather.ui.dashboard.weatherdetails.view.OutfitRecommendationsScreen
