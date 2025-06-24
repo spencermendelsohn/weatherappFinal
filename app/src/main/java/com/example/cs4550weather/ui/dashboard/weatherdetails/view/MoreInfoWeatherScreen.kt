@@ -11,6 +11,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cs4550weather.ui.home.HomeViewModel
+import androidx.compose.runtime.collectAsState
+
+
 
 @Preview(showBackground = true)
 @Composable
@@ -75,6 +79,24 @@ fun MoreInfoWeatherScreen(
             NavigationButton("BACK", onBackToCurrentWeatherClick)
         }
     }
+}
+
+@Composable
+fun MoreInfoWeatherScreenWrapper(
+    viewModel: HomeViewModel,
+    onWhatToWearClick: () -> Unit,
+    onBackToCurrentWeatherClick: () -> Unit
+) {
+    val weatherState = viewModel.weatherState.collectAsState().value
+
+    MoreInfoWeatherScreen(
+        cityName = weatherState.cityName,
+        weatherCondition = weatherState.temperature,
+        rainToday = weatherState.rainToday,
+        uvIndex = weatherState.uvIndex,
+        onWhatToWearClick = onWhatToWearClick,
+        onBackToCurrentWeatherClick = onBackToCurrentWeatherClick
+    )
 }
 
 

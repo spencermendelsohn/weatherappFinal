@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs4550weather.databinding.FragmentHomeBinding
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -37,10 +41,14 @@ class HomeFragment : Fragment() {
             updateSaveButtonState(homeViewModel)
         }
 
-        // Observe weather state changes
-        homeViewModel.weatherState.observe(viewLifecycleOwner) { weatherState ->
-            updateUI(weatherState)
-            updateSaveButtonState(homeViewModel)
+        // Collect weather state changes
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.weatherState.collect { weatherState ->
+                    updateUI(weatherState)
+                    updateSaveButtonState(homeViewModel)
+                }
+            }
         }
 
         return root
