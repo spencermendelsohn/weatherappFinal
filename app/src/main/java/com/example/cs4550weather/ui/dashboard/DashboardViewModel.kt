@@ -1,18 +1,19 @@
 package com.example.cs4550weather.ui.dashboard
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cs4550weather.data.model.SavedCity
 import com.example.cs4550weather.data.repository.SavedCitiesRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class DashboardViewModel : ViewModel() {
 
     private var savedCitiesRepository: SavedCitiesRepository? = null
-    
-    private val _savedCities = MutableLiveData<List<SavedCity>>(emptyList())
-    val savedCities: LiveData<List<SavedCity>> = _savedCities
+
+    private val _savedCities = MutableStateFlow<List<SavedCity>>(emptyList())
+    val savedCities: StateFlow<List<SavedCity>> = _savedCities.asStateFlow()
 
     fun initializeRepository(context: Context) {
         savedCitiesRepository = SavedCitiesRepository(context)

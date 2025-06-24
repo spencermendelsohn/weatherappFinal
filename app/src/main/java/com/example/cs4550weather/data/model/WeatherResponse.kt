@@ -1,7 +1,5 @@
 package com.example.cs4550weather.data.model
 
-import com.google.gson.annotations.SerializedName
-
 data class WeatherResponse(
     val latitude: Double,
     val longitude: Double,
@@ -29,7 +27,9 @@ data class Current(
     val interval: Int,
     val temperature_2m: Double,
     val relative_humidity_2m: Int,
-    val wind_speed_10m: Double
+    val wind_speed_10m: Double,
+    val weather_code: Int,
+    val uv_index: Double
 )
 
 data class HourlyUnits(
@@ -43,7 +43,8 @@ data class Hourly(
     val time: List<String>,
     val temperature_2m: List<Double>,
     val relative_humidity_2m: List<Int>,
-    val wind_speed_10m: List<Double>
+    val wind_speed_10m: List<Double>,
+    val precipitation_probability: List<Int>
 )
 
 data class GeocodingResponse(

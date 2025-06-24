@@ -1,7 +1,6 @@
 package com.example.cs4550weather.data.repository
 
 import com.example.cs4550weather.data.api.WeatherApiService
-import com.example.cs4550weather.data.model.GeocodingResponse
 import com.example.cs4550weather.data.model.WeatherResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -10,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-class WeatherRepository {
+class WeatherAppRepository {
     
     private val weatherApiService: WeatherApiService
     private val geocodingApiService: WeatherApiService
@@ -46,7 +45,7 @@ class WeatherRepository {
                 // First, get coordinates for the city
                 val geocodingResponse = geocodingApiService.searchCity(cityName)
                 
-                if (geocodingResponse.results.isEmpty()) {
+                if (geocodingResponse.results.isNullOrEmpty()) {
                     return@withContext Result.failure(Exception("City not found"))
                 }
                 

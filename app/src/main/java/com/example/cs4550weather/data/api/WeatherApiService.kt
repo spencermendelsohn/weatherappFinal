@@ -11,8 +11,10 @@ interface WeatherApiService {
     suspend fun getWeather(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-        @Query("current") current: String = "temperature_2m,relative_humidity_2m,wind_speed_10m",
-        @Query("hourly") hourly: String = "temperature_2m,relative_humidity_2m,wind_speed_10m"
+        @Query("current") current: String =
+            "temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code,uv_index",
+        @Query("hourly") hourly: String =
+            "temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation_probability"
     ): WeatherResponse
     
     @GET("v1/search")
