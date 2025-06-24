@@ -1,6 +1,5 @@
 package com.example.cs4550weather.ui.dashboard.weatherdetails.data
 
-import android.util.Log
 import com.example.cs4550weather.data.model.Current
 import com.example.cs4550weather.data.model.CurrentUnits
 import com.example.cs4550weather.data.model.Hourly
@@ -30,10 +29,7 @@ class WeatherRepository(
             }
             result
         } catch (e: Exception) {
-            Log.d("WeatherRepo", "Offline: trying to load cached data for $cityName")
-
             weatherDao.getCity(cityName)?.let {
-                Log.d("WeatherRepo", "Offline: loaded cached data for $cityName")
                 Result.success(it.toWeatherResponse())
             } ?: Result.failure(e)
         }

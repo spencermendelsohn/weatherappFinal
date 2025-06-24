@@ -1,6 +1,5 @@
 package com.example.cs4550weather.ui.dashboard.weatherdetails.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cs4550weather.data.model.WeatherResponse
@@ -86,7 +85,6 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
                         generateClothingRecommendations(uiState)
                     },
                     onFailure = { exception ->
-                        Log.d("WeatherViewModel", "Loaded weather data for $cityName (from API or cache)")
                         val savedCity = repository.getSavedWeather(cityName)
                         if (savedCity != null) {
                             _weatherState.value = savedCity.toUiState()
