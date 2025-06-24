@@ -30,4 +30,9 @@ class DashboardViewModel : ViewModel() {
         savedCitiesRepository?.removeCity(city.name)
         loadSavedCities()
     }
+
+    fun clearAllCities() {
+        savedCitiesRepository?.clearAllCities()
+        loadSavedCities()
+    }
 }

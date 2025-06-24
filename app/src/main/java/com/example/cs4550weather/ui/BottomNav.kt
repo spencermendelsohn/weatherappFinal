@@ -76,6 +76,9 @@ fun MainAppWithBottomNav() {
                 CityListScreen(
                     onCityClick = { cityName ->
                         navController.navigate("weather_details/$cityName")
+                    },
+                    onAddCityClick = {
+                        navController.navigate(BottomNavItem.Home.route)
                     }
                 )
             }

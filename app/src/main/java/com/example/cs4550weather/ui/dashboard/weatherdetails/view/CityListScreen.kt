@@ -24,6 +24,7 @@ import com.example.cs4550weather.ui.dashboard.DashboardViewModel
 @Composable
 fun CityListScreen(
     onCityClick: (String) -> Unit,
+    onAddCityClick: () -> Unit,
     viewModel: DashboardViewModel = viewModel()
 ) {
     val context = LocalContext.current
@@ -87,7 +88,7 @@ fun CityListScreen(
 
             // Add City Button (always at bottom)
             Button(
-                onClick = { /* Navigate to search/add city */ },
+                onClick = onAddCityClick,
                 modifier = Modifier
                     .width(180.dp)
                     .height(42.dp),
@@ -98,6 +99,26 @@ fun CityListScreen(
             ) {
                 Text(
                     text = "Add City",
+                    color = Color.White,
+                    fontSize = 16.sp
+                )
+            }
+
+            // Clear All Button
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = { viewModel.clearAllCities() },
+                modifier = Modifier
+                    .width(180.dp)
+                    .height(42.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFB00020)
+                ),
+                shape = RoundedCornerShape(0.dp),
+                enabled = savedCities.isNotEmpty()
+            ) {
+                Text(
+                    text = "Clear All",
                     color = Color.White,
                     fontSize = 16.sp
                 )
@@ -148,5 +169,5 @@ fun CityCard(
 @Preview(showBackground = true)
 @Composable
 fun CityListScreenPreview() {
-    CityListScreen(onCityClick = {})
+    CityListScreen(onCityClick = {}, onAddCityClick = {})
 }

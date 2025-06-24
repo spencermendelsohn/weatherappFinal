@@ -42,4 +42,8 @@ class SavedCitiesRepository(context: Context) {
     fun isCitySaved(cityName: String): Boolean {
         return getSavedCities().any { it.name == cityName }
     }
+    
+    fun clearAllCities() {
+        sharedPreferences.edit().putString("cities", "[]").apply()
+    }
 } 
